@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator nasumičnih brojeva</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 100px 60px 100px;
+            background-color: rgb(242, 242, 242);
+            color: rgb(71, 71, 71);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-sizing: border-box;
+            min-height: 100vh;
+            border-left: 1px solid rgb(230, 230, 230);
+            border-right: 1px solid rgb(230, 230, 230);
+        }
+
+        .raz {
+            padding-bottom: 8px;
+        }
+
+        #kon {
+            padding-left: 3px;
+            margin-bottom: 10px;
+        }
+
+        #kon>p {
+            display: inline-block;
+            margin: 10px 5px 1px 0;
+        }
+
+        #naslov {
+            text-align: center;
+        }
+
+        #pot {
+            margin-left: 4px;
+        }
+
+        @media screen and (max-width: 860px) {
+            section {
+                padding-top: calc(30px + (50 - 30) * ((100vw - 320px) / (860 -320)));
+                padding-right: calc(70px + (100 - 70) * ((100vw - 320px) / (860 -320)));
+                padding-bottom: calc(40px + (60 - 40) * ((100vw - 320px) / (860 -320)));
+                padding-left: calc(70px + (100 - 70) * ((100vw - 320px) / (860 -320)));
+            }
+
+            form {
+                font-size: calc(13px + (16 - 13) * ((100vw - 320px) / (860 -320)));
+            }
+
+            .txt {
+                width: calc(100px + (140 - 100) * ((100vw - 320px) / (860 -320)));
+                font-size: calc(12px + (13.3333 - 12) * ((100vw - 320px) / (860 -320)))
+            }
+
+            .dug {
+                font-size: calc(12px + (13.3333 - 12) * ((100vw - 320px) / (860 -320)))
+            }
+
+            #kon>p {
+                font-size: calc(13px + (16 - 13) * ((100vw - 320px) / (860 -320)));
+            }
+
+            #naslov>h1 {
+                font-size: calc(18px + (24 - 18) * ((100vw - 320px) / (860 -320)));
+            }
+
+            .kru {
+                width: calc(12px + (13.3333 - 12) * ((100vw - 320px) / (860 -320)));
+                height: calc(12px + (13.3333 - 12) * ((100vw - 320px) / (860 -320)));
+            }
+
+
+        }
+
+        @media screen and (max-width: 730px) {
+            section {
+                padding-top: calc(20px + (40 - 20) * ((100vw - 320px) / (730 -320)));
+                padding-right: calc(55px + (85 - 55) * ((100vw - 320px) / (730 -320)));
+                padding-bottom: calc(30px + (50 - 30) * ((100vw - 320px) / (730 -320)));
+                padding-left: calc(55px + (85 - 55) * ((100vw - 320px) / (730 -320)));
+            }
+
+        }
+
+        @media screen and (max-width: 500px) {
+            section {
+                padding-top: calc(5px + (30 - 5) * ((100vw - 320px) / (500 -320)));
+                padding-right: calc(30px + (70 - 30) * ((100vw - 320px) / (500 -320)));
+                padding-bottom: calc(10px + (40 - 10) * ((100vw - 320px) / (500 -320)));
+                padding-left: calc(30px + (70 - 30) * ((100vw - 320px) / (500 -320)));
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section>
+
+        <div id="naslov">
+            <h1>Generator nasumičnih brojeva</h1>
+        </div>
+
+        <form>
+
+            <fieldset>
+
+                <legend>Količina i granice brojeva</legend>
+
+                <div class="raz">
+                    <label for="količina">Količina brojeva:</label>
+                    <input type="text" name="količina" id="količina" placeholder="Uneti broj" class="txt">
+                    <label for="količina">(Uneti samo cele brojeve)</label>
+                </div>
+
+                <div class="raz">
+                    <label for="gornja">Gornja granica:</label>
+                    <input type="text" name="gornja" id="gornja" placeholder="Uneti broj" class="txt">
+                    <label for="gornja">(Za razlomljene brojeve stavljati tačku)</label>
+                </div>
+
+                <div>
+                    <label for="donja">Donja granica:</label>
+                    <input type="text" name="donja" id="donja" placeholder="Uneti broj" class="txt">
+                    <label for="donja">(Za razlomljene brojeve stavljati tačku)</label>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+
+                <legend>Sortiranje i tip brojeva</legend>
+
+                <div class="raz">
+                    <label for="rastući">Rastući</label>
+                    <input type="radio" name="sortiranje" id="rastući" checked class="kru">
+
+                    <label for="opadajući">Opadajući</label>
+                    <input type="radio" name="sortiranje" id="opadajući" class="kru">
+                </div>
+
+                <div>
+                    <label for="celi">Celi</label>
+                    <input type="radio" name="tip broja" id="celi" checked class="kru">
+
+                    <label for="razlomljeni">Razlomljeni</label>
+                    <input type="radio" name="tip broja" id="razlomljeni" class="kru">
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+
+                <legend>Ponavljanje brojeva i resetovanje unosa</legend>
+
+                <div class="raz">
+                    <label for="ponavljanje">Ponavljanje brojeva:</label>
+                    <input type="checkbox" name="ponavljanje" id="ponavljanje" value="Da" class="kru">
+                </div>
+
+                <div>
+                    <input type="submit" value="Resetovati" id="resetovati" class="dug">
+                </div>
+
+            </fieldset>
+
+        </form>
+
+        <div id="kon">
+            <p>Rezultat:</p>
+            <p id="rez"></p>
+        </div>
+
+        <div>
+            <button id="pot" class="dug">Potvrditi</button>
+        </div>
+
+    </section>
+
+    <script>
+
+        var niz;
+        var niz2;
+        var as;
+        var p;
+
+        var pon = document.getElementById("ponavljanje");
+        var sub = document.getElementById("pot");
+        var rez = document.getElementById("rez");
+        var kol = document.getElementById("količina");
+        var gor = document.getElementById("gornja");
+        var don = document.getElementById("donja");
+
+        var sor = [];
+        sor[0] = document.getElementById("rastući");
+        sor[1] = document.getElementById("opadajući");
+
+        var sorId;
+        var sorIdBr;
+
+        var tip = [];
+        tip[0] = document.getElementById("celi");
+        tip[1] = document.getElementById("razlomljeni");
+
+        var tipId;
+        var tipIdBr;
+
+        function generator(A, B, C, D, E) {
+            niz = [];
+            for (var i = 0; i < A; i++) {
+                as = ((Math.random() * (B - C)) + C).toFixed(2);
+                if (E == 1 && D == 1) {
+                    niz[i] = Math.round(as);
+                } else if (E == 1) {
+                    niz[i] = as;
+                } else if (D == 1) {
+                    while (niz.indexOf(Math.round(as)) != -1) {
+                        as = ((Math.random() * (B - C)) + C).toFixed(2);
+                    }
+                    niz[i] = Math.round(as);
+                } else {
+                    while (niz.indexOf(as) != -1) {
+                        as = ((Math.random() * (B - C)) + C).toFixed(2);
+                    }
+                    niz[i] = as;
+                }
+            }
+        }
+
+        function rastući(a, b) {
+            return a - b;
+        }
+
+        function opadajući(a, b) {
+            return b - a;
+        }
+
+        function korigovanje(niz, niz2) {
+            niz2 = [];
+
+            for (var i = 0; i < niz.length - 1; i++) {
+                niz2 = niz2 + niz[i] + ", ";
+            }
+
+            niz2 = niz2 + niz[niz.length - 1];
+
+            return niz2;
+        }
+
+        sub.addEventListener("click", function () {
+
+            var A = parseInt(kol.value);
+            var B = parseFloat(gor.value);
+            var C = parseFloat(don.value);
+
+            if ( A.toString() != "NaN" && B.toString() != "NaN" && C.toString() != "NaN") {
+
+                for (var i = 0; i < sor.length; i++) {
+                    if (sor[i].checked) {
+                        sorId = sor[i].id;
+                    }
+                    if (sorId == "rastući") {
+                        sorIdBr = 1;
+                    } else {
+                        sorIdBr = 0;
+                    }
+                }
+
+                for (var i = 0; i < tip.length; i++) {
+                    if (tip[i].checked) {
+                        tipId = tip[i].id;
+                    }
+                    if (tipId == "celi") {
+                        tipIdBr = 1;
+                    } else {
+                        tipIdBr = 0;
+                    }
+                }
+
+                if (pon.checked) {
+                    p = 1
+                } else {
+                    p = 0;
+                }
+
+                generator(A, B, C, tipIdBr, p);
+
+                if (sorIdBr == 1) {
+
+                    niz.sort(rastući);
+
+                    rez.innerText = korigovanje(niz, niz2).toString();
+
+                } else {
+
+                    niz.sort(opadajući);
+
+                    rez.innerText = korigovanje(niz, niz2).toString();
+
+                }
+
+            } else {
+                rez.innerText = "Uneti parametri nisu brojevi ili nedostaju!";
+            }
+        });
+
+        console.log();
+
+    </script>
+
+</body>
+
+</html>
